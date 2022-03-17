@@ -24,6 +24,7 @@ class ForgotPasswordController extends Controller
     {
         $request->validate([
             'email' => 'required|email|exists:users,email',
+            'g-recaptcha-response' => 'required|captcha'
         ]);
 
         $user = User::where('email', $request->email)->first();
