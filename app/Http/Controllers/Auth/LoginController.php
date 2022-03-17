@@ -25,12 +25,18 @@ class LoginController extends Controller
     {
         $cert = $request->validate([
             'email' => 'required|email:dns',
-            "password" => 'required'
+            "password" => 'required',
+            'g-recaptcha-response' => 'required|captcha'
         ]);
+        
+        $data = [
+            'email' => $request->email,
+            'password' => $request->password
+        ];
 
         $remember_me = $request->has('remember_me') ? true : false;
 
-        if (Auth::attempt($cert, $remember_me)) {
+        if (Auth::attempt($data, $remember_me)) {
             $request->session()->regenerate();
  
             return redirect()->route('dashboard.index');

@@ -53,6 +53,14 @@
                                         <label class="custom-control-label" for="remember_me">Remember Me</label>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    {!! NoCaptcha::display() !!}
+                                    @if ($errors->has('g-recaptcha-response'))
+                                        <span class="text-danger">
+                                            <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
                                 <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
                                 <hr>
                                 <a href="{{ route('auth.redirect') }}" class="btn btn-google btn-user btn-block">
