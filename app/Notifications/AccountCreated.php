@@ -2,7 +2,6 @@
 
 namespace App\Notifications;
 
-use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -32,7 +31,7 @@ class AccountCreated extends Notification implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(User $user, string $token = null)
+    public function __construct($user, string $token = null)
     {
         $this->token = $token;
         $this->user = $user;

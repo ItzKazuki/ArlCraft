@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BanMemberController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\VideoController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -80,6 +81,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('user', UserController::class);
         Route::resource('event', EventController::class);
 
+        Route::get('server/ban/user', [BanMemberController::class, 'ban'])->name('ban.index');
+        Route::post('server/ban/user', [BanMemberController::class, 'banStore'])->name('ban.post');
         Route::get('users.json', [NotificationAdminController::class, 'json'])->name('users.json');
         Route::get('/users/notifications', [NotificationAdminController::class, 'index'])->name('notifications.index');
         Route::post('/users/notifications', [NotificationAdminController::class, 'notify'])->name('notifications.post');

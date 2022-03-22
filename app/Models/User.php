@@ -81,19 +81,4 @@ class User extends Authenticatable
     {
         return 'https://www.gravatar.com/avatar/' . md5(strtolower(trim( $this->email )));
     }
-
-    public function announcements()
-    {
-        return $this->morphMany(Announcement::class, 'annouced')->orderBy('created_at', 'desc');
-    }
-
-    public function readAnnouncements()
-    {
-        return $this->announcements()->read();
-    }
-
-    public function unreadAnnouncements()
-    {
-        return $this->announcements()->unread();
-    }
 }
