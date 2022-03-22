@@ -71,7 +71,7 @@
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Players</h6>
-                    <a class="collapse-item" href="login.html">Ban Members</a>
+                    <a class="collapse-item" href="{{ route('ban.index') }}">Send Command</a>
                     <a class="collapse-item" href="register.html">Ban ip</a>
                     <a class="collapse-item" href="forgot-password.html">Give Ranks</a>
                     <div class="collapse-divider"></div>

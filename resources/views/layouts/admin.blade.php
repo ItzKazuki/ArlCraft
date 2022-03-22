@@ -7,24 +7,24 @@
 
     <title>{{ config('app.name') }} | {{ $title }}</title>
 
-    <link rel="icon" type="image/png" href="/assets/favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="/assets/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="{{ asset('/assets/favicon-32x32.png') }}" sizes="32x32" />
+    <link rel="icon" type="image/png" href="{{ asset('/assets/favicon-16x16.png') }}" sizes="16x16" />
 
     <!-- Custom fonts for this template-->
-    <link href="/vendor/fontawesome-free/css/brands.min.css" rel="stylesheet" type="text/css">
-    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="{{ asset('/vendor/fontawesome-free/css/brands.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="/assets/admin/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="{{ asset('/assets/admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
     {{--  summernote --}}
-    <link rel="stylesheet" href="/plugins/summernote/summernote-bs4.min.css">
+    <link rel="stylesheet" href="{{ asset('/plugins/summernote/summernote-bs4.min.css') }}">
 
     {{-- select2 --}}
-    <link rel="stylesheet" href="/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="{{ asset('/plugins/select2/css/select2.min.css') }}">
 
     <style>
         .youtube-container {
@@ -91,7 +91,7 @@
 
     <!-- Bootstrap core JavaScript-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script>
         $(function () {
             $('[data-toggle="popover"]').popover()
@@ -99,16 +99,16 @@
     </script>
 
     <!-- Core plugin JavaScript-->
-    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="{{ asset('/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="/assets/admin/js/sb-admin-2.min.js"></script>
+    <script src="{{ asset('/assets/admin/js/sb-admin-2.min.js') }}"></script>
 
     <!-- Summernote -->
-    <script src="/plugins/summernote/summernote-bs4.min.js"></script>
+    <script src="{{ asset('/plugins/summernote/summernote-bs4.min.js') }}"></script>
 
     <!-- Select2 -->
-    <script src=/plugins/select2/js/select2.min.js></script>
+    <script src="{{ asset('/plugins/select2/js/select2.min.js') }}"></script>
 
 
 </body>
