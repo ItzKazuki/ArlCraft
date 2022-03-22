@@ -4,13 +4,7 @@
     <h1 class="h3 mb-0 text-gray-800">My Events</h1>
 </div>
 
-@if (session()->has('success'))
-    <div class="card mb-3 border-left-success">
-        <div class="card-body">
-            {{ session('success') }}
-        </div>
-    </div>
-@endif
+@include('partials.success')
 
 <div class="table-responsive col-lg-10">
     <a href="{{ route('event.create') }}" class="btn btn-primary mb-3">Create Event List</a>

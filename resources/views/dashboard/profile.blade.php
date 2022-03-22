@@ -15,20 +15,8 @@
 
             </div>
         @endif
-        @if (session()->has('success'))
-            <div class="card mb-3 border-left-success">
-                <div class="card-body">
-                    {{ session('success') }}
-                </div>
-            </div>
-        @endif
-        @if (session()->has('error'))
-            <div class="card mb-3 border-left-danger">
-                <div class="card-body">
-                    {{ session('error') }}
-                </div>
-            </div>
-        @endif
+        @include('partials.success')
+        @include('partials.error')
     </div>
 </div>
 

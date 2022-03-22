@@ -14,22 +14,8 @@
                     <div class="col-lg-6">
                         <div class="p-5">
                             <div class="text-center">
-
-                                @if (session()->has('error'))
-                                    <div class="card mb-3 border-left-danger">
-                                        <div class="card-body">
-                                            {{ session('error') }}
-                                        </div>
-                                    </div>
-                                @endif
-
-                                @if (session()->has('success'))
-                                    <div class="card mb-3 border-left-success">
-                                        <div class="card-body">
-                                            {{ session('success') }}
-                                        </div>
-                                    </div>
-                                @endif
+                                @include('partials.error')
+                                @include('partials.success')
                                 <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                             </div>
                             <form class="user" action="{{ route('auth.login') }}" method="post">
