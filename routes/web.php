@@ -35,7 +35,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('store', [HomeController::class, 'store'])->name('store');
 Route::get('vote', [HomeController::class, 'vote'])->name('vote');
 Route::get('event', [HomeController::class, 'event'])->name('event');
-Route::get('video', [HomeController::class, 'video'])->name('video');        
+Route::get('video', [HomeController::class, 'video'])->name('video');    
+Route::get('link', [HomeController::class, 'link'])->name('link');     
 
 Route::group(['middleware' => 'guest', 'prefix' => 'auth'], function () {
     // These routes are defined so that we can continue to reference them programatically.

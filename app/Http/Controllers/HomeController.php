@@ -72,4 +72,39 @@ class HomeController extends Controller
             'videos' => Video::all()
         ]);
     }
+
+    public function link()
+    {
+        $link = [
+            [
+                'name' => 'wa1',
+                'link' => 'https://blabalalbalbl.com'
+            ],
+            [
+                'name' => 'wa2',
+                'link' => 'https://blabalalbalbl.com'
+            ],
+            [
+                'name' => 'wa3',
+                'link' => 'https://blabalalbalbl.com'
+            ],
+            [
+                'name' => 'wa4',
+                'link' => 'https://blabalalbalbl.com'
+            ],
+            [
+                'name' => 'wa5',
+                'link' => 'https://blabalalbalbl.com'
+            ],
+            [
+                'name' => 'wa6',
+                'link' => 'https://blabalalbalbl.com'
+            ],
+        ];
+        
+        return view('link', [
+            'title' => 'Link',
+            'links' => $link
+        ]);
+    }
 }
