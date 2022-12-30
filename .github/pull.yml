@@ -1,5 +1,5 @@
 version: "1"
 rules:
-  - base: master
-    upstream: wei:master    # change `wei` to the owner of upstream repo
+  - base: main
+    upstream: ItzKazuki:main    # change `wei` to the owner of upstream repo
     mergeMethod: hardreset
