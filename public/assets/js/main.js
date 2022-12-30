@@ -26,18 +26,10 @@ $(document).ready(()=>{
   const ip = $(".sip").attr("data-ip");
   const jenis = $(".sip").attr("data-jenis");
 
-  $.get(`https://api.mcstatus.io/status/${jenis}/${ip}`, (result)=>{
-    if (result.response) {
-      $(".sip").html(result.response.online_players);
-    } else {
-      $(".playercount").html("Server isn't online!");
-    }
-  });
-
   setInterval(()=>{
-    $.get(`https://api.mcstatus.io/status/${jenis}/${ip}`, (result)=>{
-      if (result.response) {
-        $(".sip").html(result.response.online_players);
+    $.get(`https://api.kazukikunn.xyz/api/mc?type=${jenis}&port=19132&ip=${ip}`, (result)=>{
+      if (result.players) {
+        $(".sip").html(result.players.online);
       } else {
         $(".playercount").html("Server isn't online!");
       }
