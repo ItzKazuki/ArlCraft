@@ -15,8 +15,6 @@
 
             </div>
         @endif
-        @include('partials.success')
-        @include('partials.error')
     </div>
 </div>
 

@@ -4,8 +4,6 @@
     <h1 class="h3 mb-0 text-gray-800">Users</h1>
 </div>
 
-@include('partials.success')
-
 <div class="table-responsive col-lg-10">
     <div class="mb-3">
         <a href="{{ route('user.create') }}" class="btn btn-primary btn-icon-split mr-3">

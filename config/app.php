@@ -192,7 +192,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // ...
+        'Session' => Illuminate\Support\Facades\Session::class,
     ])->toArray(),
 
 ];

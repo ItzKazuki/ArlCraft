@@ -71,9 +71,9 @@
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Players</h6>
-                    <a class="collapse-item" href="{{ route('ban.index') }}">Send Command</a>
-                    <a class="collapse-item" href="register.html">Ban ip</a>
-                    <a class="collapse-item" href="forgot-password.html">Give Ranks</a>
+                    <a class="collapse-item" href="{{ route('ban.index') }}">Ban Players</a>
+                    <a class="collapse-item" href="{{ route('send.command.index') }}">Send Command</a>
+                    <a class="collapse-item" href="{{ route('set.ranks.index') }}">Set Ranks</a>
                     <div class="collapse-divider"></div>
                     <h6 class="collapse-header">Other Pages:</h6>
                     <a class="collapse-item" href="404.html">404 Page</a>

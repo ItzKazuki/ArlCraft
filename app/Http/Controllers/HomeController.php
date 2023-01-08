@@ -45,8 +45,8 @@ class HomeController extends Controller
             }
         }
 
-        $topVoter = Voter::where('month', intval($carbonNow->format('m')))->get(); //mencari top voter berdasarkan month
-        $thisMonth = Carbon::createFromFormat('m', $carbonNow->format('m'))->format('F'); //mengubah integer month menjadi string month
+        $topVoter = Voter::where('month', intval($monthVoter->format('m')))->get(); //mencari top voter berdasarkan month
+        $thisMonth = Carbon::createFromFormat('m', $monthVoter->format('m'))->format('F'); //mengubah integer month menjadi string month
 
         return view('vote', [
             'title' => 'Votes',

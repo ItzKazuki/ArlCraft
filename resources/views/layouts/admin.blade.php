@@ -98,6 +98,31 @@
         })
     </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.14.1/dist/sweetalert2.all.min.js"></script>
+    <script>
+        @if (Session::has('error'))
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                html: '{{ Session::get('error') }}',
+            })
+        @endif
+        @if (Session::has('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                html: '{{ Session::get('success') }}'
+            })
+        @endif
+        @if (Session::has('info'))
+            Swal.fire({
+                icon: 'info',
+                title: 'Info',
+                html: '{{ Session::get('info') }}'
+            })
+        @endif
+    </script>
+
     <!-- Core plugin JavaScript-->
     <script src="{{ asset('/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 

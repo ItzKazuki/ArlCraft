@@ -4,8 +4,6 @@
     <h1 class="h3 mb-0 text-gray-800">Send Notifications</h1>
 </div>
 
-@include('partials.success')
-
 <div class="row">
     <div class="col-lg-12">
         <div class="card">

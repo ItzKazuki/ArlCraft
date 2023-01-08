@@ -4,8 +4,6 @@
     <h1 class="h3 mb-0 text-gray-800">My Videos</h1>
 </div>
 
-@include('partials.success')
-
 <div class="table-responsive col-lg-10">
     <a href="{{ route('video.create') }}" class="btn btn-primary mb-3">Create Video List</a>
     <table class="table table-striped table-sm">

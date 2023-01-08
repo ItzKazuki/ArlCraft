@@ -22,18 +22,21 @@ class Rcon {
     const SERVERDATA_EXECCOMMAND = 2;
     const SERVERDATA_RESPONSE_VALUE = 0;
 
-    public function __construct($host, $port, $password, $timeout){
+    public function __construct($host, $port, $password, $timeout)
+    {
         $this->host = $host;
         $this->port = $port;
         $this->password = $password;
         $this->timeout = $timeout;
     }
 
-    public function get_response(){
+    public function getResponse()
+    {
         return $this->last_response;
     }
 
-    public function connect(){
+    public function connect()
+    {
         $this->socket = fsockopen($this->host, $this->port, $errno, $errstr, $this->timeout);
 
         if (!$this->socket)
@@ -61,21 +64,21 @@ class Rcon {
         }
     }
 
-    public function is_connected() {
+    public function isConnected() {
         return $this->authorized;
     }
 
-    public function send_command($command)
+    public function sendCommand($command)
     {
-        if (!$this->is_connected()) {
+        if (!$this->isConnected()) {
             return false;
         }
 
         // send command packet.
-        $this->write_packet(Rcon::PACKET_COMMAND, Rcon::SERVERDATA_EXECCOMMAND, $command);
+        $this->writePacket(Rcon::PACKET_COMMAND, Rcon::SERVERDATA_EXECCOMMAND, $command);
 
         // get response.
-        $response_packet = $this->read_packet();
+        $response_packet = $this->readPacket();
         if ($response_packet['id'] == Rcon::PACKET_COMMAND) {
             if ($response_packet['type'] == Rcon::SERVERDATA_RESPONSE_VALUE) {
                 $this->last_response = $response_packet['body'];
@@ -86,9 +89,10 @@ class Rcon {
         return false;
     }
 
-    private function authorize(){
-        $this->write_packet(Rcon::PACKET_AUTHORIZE, Rcon::SERVERDATA_AUTH, $this->password);
-        $response_packet = $this->read_packet();
+    private function authorize()
+    {
+        $this->writePacket(Rcon::PACKET_AUTHORIZE, Rcon::SERVERDATA_AUTH, $this->password);
+        $response_packet = $this->readPacket();
 
         if ($response_packet['type'] == Rcon::SERVERDATA_AUTH_RESPONSE) {
             if ($response_packet['id'] == Rcon::PACKET_AUTHORIZE) {
@@ -104,7 +108,7 @@ class Rcon {
     /**
      * Writes a packet to the socket stream..
      */
-    private function write_packet($packet_id, $packet_type, $packet_body)
+    private function writePacket($packet_id, $packet_type, $packet_body)
     {
         /*
         Size      32-bit little-endian Signed Integer     Varies, see below.
@@ -130,7 +134,7 @@ class Rcon {
 
     }
 
-    private function read_packet()
+    private function readPacket()
     {
         //get packet size.
         $size_data = fread($this->socket, 4);

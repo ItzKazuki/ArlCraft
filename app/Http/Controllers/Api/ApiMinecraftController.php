@@ -9,7 +9,7 @@ use xPaw\MinecraftQueryException;
 use xPaw\MinecraftPingException;
 use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Rcon;
+use Thedudeguy\Rcon;
 
 class ApiMinecraftController extends Controller
 {
@@ -129,10 +129,10 @@ class ApiMinecraftController extends Controller
         $rcon = new Rcon($host, $port, $password, $timeout);
 
         if ($rcon->connect()) {
-            $rcon->send_command($request->cmd);
+            $rcon->sendCommand($request->cmd);
             $response['status'] = 'success';
             $response['command'] = $request->cmd;
-            $response['response'] = $rcon->get_response();
+            $response['response'] = $this->parseMinecraftColors($rcon->getResponse());
         }
         else {
             $response['status'] = 'error';
@@ -141,6 +141,7 @@ class ApiMinecraftController extends Controller
 
         return json_encode($response);
     }
+
     public function parseMinecraftColors($string)
     {
         $string = utf8_decode(htmlspecialchars($string, ENT_QUOTES, "UTF-8"));

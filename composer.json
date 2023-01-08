@@ -16,6 +16,7 @@
         "laravel/tinker": "^2.7",
         "linslin/yii2-curl": "^1.5",
         "spatie/laravel-query-builder": "^5.0",
+        "thedudeguy/rcon": "^1.0",
         "xpaw/php-minecraft-query": "^4.0"
     },
     "require-dev": {
