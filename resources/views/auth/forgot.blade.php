@@ -1,4 +1,4 @@
-@extends('auth.layouts.main')
+@extends('layouts.auth')
 @section('content')
 
 <!-- Outer Row -->
@@ -18,7 +18,7 @@
                                 <p class="mb-4">We get it, stuff happens. Just enter your email address below
                                     and we'll send you a link to reset your password!</p>
                             </div>
-                            <form class="user" action="{{ route('auth.forget.password') }}" method="post">
+                            <form class="user" action="{{ route('auth.forgot.password.store') }}" method="post">
                                 @csrf
                                 <div class="form-group">
                                     <input type="email" class="form-control form-control-user  @error('email') is-invalid @enderror"

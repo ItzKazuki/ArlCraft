@@ -97,6 +97,6 @@ class NotificationAdminController extends Controller
 
         Notification::send($users, new DynamicNotification($data["via"], $database, $mail));
 
-        return redirect()->route('notifications.index')->with('success', 'Notification sent!');
+        return redirect()->route('admin.notifications')->with('success', 'Notification sent!');
     }
 }

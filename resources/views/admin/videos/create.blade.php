@@ -5,7 +5,7 @@
     <h1 class="h2">Create New Videos</h1>
 </div>
 <div class="col-lg-8">
-    <form method="post" action="{{ route('video.store') }}">
+    <form method="post" action="{{ route('admin.video.store') }}">
         @csrf
         <div class="mb-3">
           <label for="title" class="form-label">Title</label>

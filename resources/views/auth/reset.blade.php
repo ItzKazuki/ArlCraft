@@ -1,4 +1,4 @@
-@extends('auth.layouts.main')
+@extends('layouts.auth')
 @section('content')
 
 <div class="card o-hidden border-0 shadow-lg my-5">
@@ -12,7 +12,7 @@
                         <h1 class="h4 text-gray-900 mb-4">Confrim Reset Password</h1>
                         <p class="mb-4">For {{ $email }}</p>
                     </div>
-                    <form class="user" action="{{ route('auth.reset.password') }}" method="post">
+                    <form class="user" action="{{ route('auth.reset.password.store') }}" method="post">
                         @csrf
                         <input type="hidden" name="token" value="{{ $token }}">
                         <input type="hidden" name="email" value="{{ $email }}">

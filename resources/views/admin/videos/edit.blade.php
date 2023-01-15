@@ -5,7 +5,7 @@
     <h1 class="h2">Edit Videos</h1>
 </div>
 <div class="col-lg-8">
-    <form method="post" action="{{ route('video.update', $video->id) }}">
+    <form method="post" action="{{ route('admin.video.update', $video->id) }}">
         @method('put')
         @csrf
         <div class="mb-3">

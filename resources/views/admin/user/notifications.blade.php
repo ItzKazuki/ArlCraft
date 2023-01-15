@@ -8,7 +8,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <form action="{{route('notifications.post')}}" method="POST">
+                <form action="{{route('admin.notifications.store')}}" method="POST">
                     @csrf
                     @method('POST')
 

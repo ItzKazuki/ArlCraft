@@ -5,6 +5,7 @@
 </div>
 <div>
     <small>kenapa aku buat ini? karna kedepannya aku mau bikin ini terkonesi dengan server ArlCraft :)</small>
+    soon: bisa beli ranks, bisa beli barang dari sini, bisa cek coins, bisa cek server online atau tidak
 </div>
 
 {{-- <!-- Earnings (Monthly) Card Example -->

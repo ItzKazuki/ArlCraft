@@ -14,14 +14,14 @@ use Illuminate\Support\Facades\Auth;
 
 class SocialiteProviderController extends Controller
 {
-    public function redirectToProvider()
+    public function googleRedirect()
     {
         return Socialite::driver('google')->redirect();
     }
   
   
     //tambahkan script di bawah ini 
-    public function handleProviderCallback(Request $request)
+    public function handleGoogleCallback(Request $request)
     {
         try {
             $user_google    = Socialite::driver('google')->user();
@@ -31,7 +31,7 @@ class SocialiteProviderController extends Controller
             //jika user tidak ada maka simpan ke database
             //$user_google menyimpan data google account seperti email, foto, dsb
 
-            if($user != null){
+            if( $user != null ) {
                 Auth::login($user, true);
                 return redirect()->route('dashboard.index');
             } else {
@@ -57,7 +57,7 @@ class SocialiteProviderController extends Controller
             }
 
         } catch (\Exception $e) {
-            return redirect()->route('login');
+            return redirect()->route('login')->with('error', $e->getMessage());
         }
     }
 }

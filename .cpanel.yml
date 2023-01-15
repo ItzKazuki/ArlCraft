@@ -1,7 +1,0 @@
----
-deployment:
-  tasks:
-    - export DEPLOYPATH=/home/arlcraft/public_html/
-    - /bin/cp public/assets $DEPLOYPATH
-    - /bin/cp public/vendor $DEPLOYPATH
-    - /bin/cp public/plugins $DEPLOYPATH

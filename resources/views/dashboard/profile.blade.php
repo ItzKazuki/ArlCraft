@@ -2,7 +2,7 @@
 @section('container')
 <div class="row">
     <div class="col-lg-12 px-0">
-        @if (true)
+        @if (false)
             <div class="alert alert-warning p-2 m-2">
                 <h5><i class="icon fas fa-exclamation-circle"></i> 
                     Required Email verification!

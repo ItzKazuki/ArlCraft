@@ -5,7 +5,7 @@
     <h1 class="h2">Create New Event</h1>
 </div>
 <div class="col-lg-8">
-    <form method="post" action="{{ route('event.store') }}">
+    <form method="post" action="{{ route('admin.event.store') }}">
         @csrf
         <div class="mb-3">
           <label for="event_name" class="form-label">Event Name</label>

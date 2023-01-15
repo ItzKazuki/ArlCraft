@@ -43,7 +43,7 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        @include('admin.layouts.sidebar')
+        @include('layouts.partials.admin.sidebar')
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -51,7 +51,7 @@
             <!-- Main Content -->
             <div id="content">
 
-                @include('admin.layouts.nav')
+                @include('layouts.partials.admin.nav')
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
@@ -87,7 +87,7 @@
     </a>
 
     <!-- Logout Modal-->
-    @include('partials.modal.logout')
+    @include('layouts.partials.modal.logout')
 
     <!-- Bootstrap core JavaScript-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

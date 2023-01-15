@@ -6,13 +6,13 @@
 
 <div class="table-responsive col-lg-10">
     <div class="mb-3">
-        <a href="{{ route('user.create') }}" class="btn btn-primary btn-icon-split mr-3">
+        <a href="{{ route('admin.user.create') }}" class="btn btn-primary btn-icon-split mr-3">
             <span class="icon text-white-50">
                 <i class="fas fa-user-plus"></i>
             </span>
             <span class="text">Create New User</span>
         </a>
-        <a href="{{ route('notifications.index') }}" class="btn btn-info btn-icon-split">
+        <a href="{{ route('admin.notifications') }}" class="btn btn-info btn-icon-split">
             <span class="icon text-white-50">
                 <i class="fas fa-paper-plane"></i>
             </span>
@@ -39,8 +39,8 @@
                 <td>{{ $user->email }}</td>
                 <td><span class="badge bg-{{ $user->isAdmin ? 'danger' : 'primary' }} text-white">{{ $user->isAdmin ? 'Admin' : 'User' }}</span></td>
                 <td>
-                    <a href="{{ route('user.edit', $user->id) }}" class="btn btn-warning btn-circle btn-sm"><i class="fas fa-edit"></i></a>
-                    <form action="{{ route('user.destroy', $user->id) }}" method="post" class="d-inline">
+                    <a href="{{ route('admin.user.edit', $user->id) }}" class="btn btn-warning btn-circle btn-sm"><i class="fas fa-edit"></i></a>
+                    <form action="{{ route('admin.user.destroy', $user->id) }}" method="post" class="d-inline">
                         @method('delete')
                         @csrf
                         <button class="btn btn-danger btn-circle btn-sm" onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></button>

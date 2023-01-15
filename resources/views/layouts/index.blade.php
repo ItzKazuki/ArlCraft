@@ -33,7 +33,7 @@
 </head>
 <body>
 
-@include('partials.nav')
+@include('layouts.partials.nav')
 
 @yield('body')
 

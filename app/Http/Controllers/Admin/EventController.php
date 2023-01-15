@@ -54,7 +54,7 @@ class EventController extends Controller
 
         Event::create($validation);
 
-        return redirect()->route('event.index')->with('success', 'Event berhasil di tambahkan');
+        return redirect()->route('admin.event.index')->with('success', 'Event berhasil di tambahkan');
     }
 
     /**
@@ -103,7 +103,7 @@ class EventController extends Controller
 
         $event->update($validation);
 
-        return redirect()->route('event.index')->with('success', 'Event berhasil di edit!');
+        return redirect()->route('admin.event.index')->with('success', 'Event berhasil di edit!');
     }
 
     /**
@@ -116,6 +116,6 @@ class EventController extends Controller
     {
         $event->destroy($event->id);
 
-        return redirect()->route('event.index')->with('success', 'Event berhasil di hapus!');
+        return redirect()->route('admin.event.index')->with('success', 'Event berhasil di hapus!');
     }
 }
