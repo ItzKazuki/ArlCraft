@@ -2,10 +2,10 @@
 @section('container')
 <div
     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Create New User</h1>
+    <h1 class="h2">Edit User</h1>
 </div>
 <div class="col-lg-8">
-    <form method="post" action="{{ route('user.update', $user->id) }}">
+    <form method="post" action="{{ route('admin.user.update', $user->id) }}">
         @method('put')
         @csrf
         <div class="mb-3">
@@ -47,7 +47,8 @@
         <div class="mb-3">
             <label for="isAdmin" class="form-label">Administrator</label>
             <select class="form-select" name="isAdmin">
-                <option value="{{ $user->isAdmin ? '1' : '0' }}">{{ $user->isAdmin ? 'Yes' : 'No' }}</option>
+                <option value="0">No</option>
+                <option value="1">Yes</option>
             </select>
         </div>
         <button type="submit" class="btn btn-primary mb-5">Submit</button>

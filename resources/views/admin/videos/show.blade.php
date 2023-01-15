@@ -2,19 +2,19 @@
 @section('container')
     <div class="container reveal ">
 
-        <a href="{{ route('video.index') }}" class="btn btn-primary btn-icon-split">
+        <a href="{{ route('admin.video.index') }}" class="btn btn-primary btn-icon-split">
             <span class="icon text-white-50">
                 <i class="fas fa-arrow-left"></i>
             </span>
             <span class="text">Back to My Video</span>
         </a>
-        <a href="{{ route('video.edit', $video->id) }}" class="btn btn-warning btn-icon-split">
+        <a href="{{ route('admin.video.edit', $video->id) }}" class="btn btn-warning btn-icon-split">
             <span class="icon text-white-50">
                 <i class="fas fa-edit"></i>
             </span>
             <span class="text">Edit</span>
         </a>
-        <form action="{{ route('video.destroy', $video->id) }}" method="post" class="d-inline">
+        <form action="{{ route('admin.video.destroy', $video->id) }}" method="post" class="d-inline">
             @method('delete')
             @csrf
             <button class="btn btn-danger btn-icon-split" onclick="return confirm('Are you sure?')">

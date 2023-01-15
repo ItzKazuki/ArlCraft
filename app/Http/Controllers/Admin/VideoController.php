@@ -52,7 +52,7 @@ class VideoController extends Controller
 
         Video::create($validatedData);
 
-        return redirect()->route('video.index')->with('success', 'Video Berhasil di tambah!');
+        return redirect()->route('admin.video.index')->with('success', 'Video Berhasil di tambah!');
     }
 
     /**
@@ -101,7 +101,7 @@ class VideoController extends Controller
 
         $video->update($validatedData);
 
-        return redirect()->route('video.index')->with('success', 'Video Berhasil di edit!');
+        return redirect()->route('admin.video.index')->with('success', 'Video Berhasil di edit!');
     }
 
     /**
@@ -114,6 +114,6 @@ class VideoController extends Controller
     {
         $video->destroy($video->id);
 
-        return redirect()->route('video.index')->with('success', 'Video berhasil di hapus!');
+        return redirect()->route('admin.video.index')->with('success', 'Video berhasil di hapus!');
     }
 }

@@ -5,7 +5,7 @@
 </div>
 
 <div class="table-responsive col-lg-10">
-    <a href="{{ route('event.create') }}" class="btn btn-primary mb-3">Create Event List</a>
+    <a href="{{ route('admin.event.create') }}" class="btn btn-primary mb-3">Create Event List</a>
     <table class="table table-striped table-sm">
         <thead>
             <tr>
@@ -26,9 +26,9 @@
                 <td>{{ $event->start_at }}</td>
                 <td>{{ $event->end_at }}</td>
                 <td>
-                    <a href="{{ route('event.show', $event->id) }}" class="btn btn-info btn-circle btn-sm"><i class="fas fa-eye"></i></a>
-                    <a href="{{ route('event.edit', $event->id) }}" class="btn btn-warning btn-circle btn-sm"><i class="fas fa-edit"></i></a>
-                    <form action="{{ route('event.destroy', $event->id) }}" method="post" class="d-inline">
+                    <a href="{{ route('admin.event.show', $event->id) }}" class="btn btn-info btn-circle btn-sm"><i class="fas fa-eye"></i></a>
+                    <a href="{{ route('admin.event.edit', $event->id) }}" class="btn btn-warning btn-circle btn-sm"><i class="fas fa-edit"></i></a>
+                    <form action="{{ route('admin.event.destroy', $event->id) }}" method="post" class="d-inline">
                         @method('delete')
                         @csrf
                         <button class="btn btn-danger btn-circle btn-sm" onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></button>

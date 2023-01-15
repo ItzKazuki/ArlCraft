@@ -1,4 +1,4 @@
-@extends('auth.layouts.main')
+@extends('layouts.auth')
 @section('content')
 
 <!-- Outer Row -->
@@ -16,7 +16,7 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                             </div>
-                            <form class="user" action="{{ route('auth.login') }}" method="post">
+                            <form class="user" action="{{ route('auth.login.store') }}" method="post">
                                 @csrf
                                 <div class="form-group">
                                     <input type="email" class="form-control form-control-user @error('email') is-invalid @enderror" id="email" name="email"
@@ -47,7 +47,7 @@
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
                                 <hr>
-                                <a href="{{ route('auth.redirect') }}" class="btn btn-google btn-user btn-block">
+                                <a href="{{ route('auth.redirect.google') }}" class="btn btn-google btn-user btn-block">
                                     <i class="fab fa-google fa-fw"></i> Login with Google
                                 </a>
                                 {{-- <a href="index.html" class="btn btn-facebook btn-user btn-block">
@@ -56,7 +56,7 @@
                             </form>
                             <hr>
                             <div class="text-center">
-                                <a class="small" href="{{ route('auth.forget.password') }}">Forgot Password?</a>
+                                <a class="small" href="{{ route('auth.forgot.password') }}">Forgot Password?</a>
                             </div>
                             <div class="text-center">
                                 <a class="small" href="{{ route('auth.register') }}">Create an Account!</a>

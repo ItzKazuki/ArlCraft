@@ -54,7 +54,7 @@ class UserController extends Controller
 
         User::create($validatedData);
 
-        return redirect()->route('user.index')->with('success', 'User berhasil di tambah!');
+        return redirect()->route('admin.user.index')->with('success', 'User berhasil di tambah!');
     }
 
     /**
@@ -103,7 +103,7 @@ class UserController extends Controller
 
         User::where('id', $user->id)->update($validatedData);
 
-        return redirect()->route('user.index')->with('success', 'User berhasil di edit!');
+        return redirect()->route('admin.user.index')->with('success', 'User berhasil di edit!');
     }
 
     /**
@@ -116,6 +116,6 @@ class UserController extends Controller
     {
         $user->destroy($user->id);
 
-        return redirect()->route('user.index')->with('success', 'User berhasil di hapus!');
+        return redirect()->route('admin.user.index')->with('success', 'User berhasil di hapus!');
     }
 }

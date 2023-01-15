@@ -13,7 +13,7 @@ class ForgotPasswordController extends Controller
 {
     public function index()
     {
-        return view('auth.forget', [
+        return view('auth.forgot', [
             'title' => 'Reset Password'
         ]);
     }
@@ -37,7 +37,7 @@ class ForgotPasswordController extends Controller
 
         $user->sendPasswordResetNotification($token);
  
-        return redirect()->route('login')->with('success', 'We have e-mailed your password reset link!');
+        return redirect()->route('auth.login')->with('success', 'We have e-mailed your password reset link!');
     }
 
     public function reset($token, Request $request)
@@ -70,6 +70,6 @@ class ForgotPasswordController extends Controller
 
         DB::table('password_resets')->where(['email'=> $request->email])->delete();
  
-        return redirect()->route('login')->with('success', 'Your password has been changed!');
+        return redirect()->route('auth.login')->with('success', 'Your password has been changed!');
     }
 }

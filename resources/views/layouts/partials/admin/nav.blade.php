@@ -6,16 +6,16 @@
         <i class="fa fa-bars"></i>
     </button>
 
-    {{-- @include('partials.admin.Tsearch') --}}
+    {{-- @include('layouts.partials.admin.Tsearch') --}}
 
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
 
-        {{-- @include('partials.admin.search') --}}
+        {{-- @include('layouts.partials.admin.search') --}}
 
-        {{-- @include('partials.admin.alert') --}}
+        {{-- @include('layouts.partials.admin.alert') --}}
 
-        @include('partials.admin.message')
+        @include('layouts.partials.admin.message')
 
         <div class="topbar-divider d-none d-sm-block"></div>
 

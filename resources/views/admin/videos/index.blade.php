@@ -5,7 +5,7 @@
 </div>
 
 <div class="table-responsive col-lg-10">
-    <a href="{{ route('video.create') }}" class="btn btn-primary mb-3">Create Video List</a>
+    <a href="{{ route('admin.video.create') }}" class="btn btn-primary mb-3">Create Video List</a>
     <table class="table table-striped table-sm">
         <thead>
             <tr>
@@ -26,9 +26,9 @@
                 <td>{{ $video->username }}</td>
                 <td>{{ $video->created_at }}</td>
                 <td>
-                    <a href="{{ route('video.show', $video->id) }}" class="btn btn-info btn-circle btn-sm"><i class="fas fa-eye"></i></a>
-                    <a href="{{ route('video.edit', $video->id) }}" class="btn btn-warning btn-circle btn-sm"><i class="fas fa-edit"></i></a>
-                    <form action="{{ route('video.destroy', $video->id) }}" method="post" class="d-inline">
+                    <a href="{{ route('admin.video.show', $video->id) }}" class="btn btn-info btn-circle btn-sm"><i class="fas fa-eye"></i></a>
+                    <a href="{{ route('admin.video.edit', $video->id) }}" class="btn btn-warning btn-circle btn-sm"><i class="fas fa-edit"></i></a>
+                    <form action="{{ route('admin.video.destroy', $video->id) }}" method="post" class="d-inline">
                         @method('delete')
                         @csrf
                         <button class="btn btn-danger btn-circle btn-sm" onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></button>

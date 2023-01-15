@@ -40,7 +40,7 @@ class ServerRconController extends Controller
     public function banStore(Request $request) 
     {
         $cmd = 'ban' . ' ' . $request->player . ' ' . $request->durasi . ' ' . $request->message;
-        if(BannedUser::where('username', $request->player)->get()) {
+        if(BannedUser::where('username', $request->player)->first() != null) {
             return redirect()->back()->with('error', 'this username already banned');
         }
 

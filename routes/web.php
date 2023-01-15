@@ -39,62 +39,58 @@ Route::get('event', [HomeController::class, 'event'])->name('event');
 Route::get('video', [HomeController::class, 'video'])->name('video');
 Route::get('link', [HomeController::class, 'link'])->name('link');
 
-Route::group(['middleware' => 'guest', 'prefix' => 'auth'], function () {
-    // These routes are defined so that we can continue to reference them programatically.
-    // They all route to the same controller function which passes off to Vuejs.
-    Route::get('/', function () {
-        return redirect()->route('login');
-    });
+Route::prefix('auth')->name('auth.')->middleware('guest')->group(function () {
     Route::get('login', [LoginController::class, 'index'])->name('login');
-    Route::post('login', [LoginController::class, 'auth'])->name('auth.login');
+    Route::post('login', [LoginController::class, 'auth'])->name('login.store');
 
     //oauth
-    Route::get('redirect', [SocialiteProviderController::class, 'redirectToProvider'])->name('auth.redirect');
-    Route::get('callback', [SocialiteProviderController::class, 'handleProviderCallback'])->name('auth.callback');
+    Route::get('redirect/google', [SocialiteProviderController::class, 'googleRedirect'])->name('redirect.google');
+    Route::get('callback/google', [SocialiteProviderController::class, 'handleGoogleCallback'])->name('callback.google');
 
     Route::get('register', [RegisterController::class, 'index'])->name('register');
-    Route::post('register', [RegisterController::class, 'store'])->name('auth.register');
+    Route::post('register', [RegisterController::class, 'store'])->name('register.store');
 
-    Route::get('password/forget', [ForgotPasswordController::class, 'index'])->name('forget.password');
-    Route::post('password/forget', [ForgotPasswordController::class, 'store'])->name('auth.forget.password');
+    Route::get('password/forgot', [ForgotPasswordController::class, 'index'])->name('forgot.password');
+    Route::post('password/forgot', [ForgotPasswordController::class, 'store'])->name('forgot.password.store');
     Route::get('password/reset/{token}', [ForgotPasswordController::class, 'reset'])->name('reset.password');
-    Route::post('password/reset', [ForgotPasswordController::class, 'resetStore'])->name('auth.reset.password');
+    Route::post('password/reset', [ForgotPasswordController::class, 'resetStore'])->name('reset.password.store');
 });
 
-Route::group(['middleware' => 'auth'], function () {
+Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(function () {
+    // These routes are defined so that we can continue to reference them programatically.
+    // They all route to the same controller function which passes off to Vuejs.
+    Route::get('/', [DashboardController::class, 'index'])->name('index');
 
-    Route::group(['prefix' => 'dashboard'], function () {
-        // These routes are defined so that we can continue to reference them programatically.
-        // They all route to the same controller function which passes off to Vuejs.
-        Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+    Route::patch('profile/{id}', [ProfileController::class, 'update'])->name('profile.post');
 
-        Route::get('profile', [ProfileController::class, 'index'])->name('dashboard.profile');
-        Route::patch('profile/{id}', [ProfileController::class, 'update'])->name('dashboard.profile.post');
+    Route::get('notifications', [NotificationController::class, 'index'])->name('notification');
+    Route::get('notifications/{id}', [NotificationController::class, 'show'])->name('notification.show');
+});
 
-        Route::get('notifications', [NotificationController::class, 'index'])->name('dashboard.notification');
-        Route::get('notifications/{id}', [NotificationController::class, 'show'])->name('dashboard.notification.show');
-    });
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
+    Route::get('/', [AdminController::class, 'index'])->name('index');
+    Route::resource('video', VideoController::class); //admin.video
+    Route::resource('user', UserController::class); //admin.user
+    Route::resource('event', EventController::class); //admin.event
 
-    Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
-        //alreday have name video.(what you want just type php artisan route:list)
-        Route::get('/', [AdminController::class, 'index'])->name('admin.index');
-        Route::resource('video', VideoController::class);
-        Route::resource('user', UserController::class);
-        Route::resource('event', EventController::class);
+    //buat notification
+    Route::get('users.json', [NotificationAdminController::class, 'json'])->name('users.json');
+    Route::get('users/notifications', [NotificationAdminController::class, 'index'])->name('notifications');
+    Route::post('users/notifications', [NotificationAdminController::class, 'notify'])->name('notifications.store');
 
-        Route::group(['prefix' => 'server'], function() {
-            Route::get('ban', [ServerRconController::class, 'ban'])->name('ban.index');
-            Route::post('ban', [ServerRconController::class, 'banStore'])->name('ban.post');
-            Route::get('sendCommand', [ServerRconController::class, 'sendCommand'])->name('send.command.index');
-            Route::post('sendCommand', [ServerRconController::class, 'sendCommandStore'])->name('send.command.post');
-            Route::get('setRanks', [ServerRconController::class, 'setRanks'])->name('set.ranks.index');
-            Route::post('setRanks', [ServerRconController::class, 'setRanksStore'])->name('set.ranks.post');
-        });
-
-        Route::get('users.json', [NotificationAdminController::class, 'json'])->name('users.json');
-        Route::get('/users/notifications', [NotificationAdminController::class, 'index'])->name('notifications.index');
-        Route::post('/users/notifications', [NotificationAdminController::class, 'notify'])->name('notifications.post');
+    //server
+    Route::prefix('server')->name('server.')->group(function () {
+        //get
+        Route::get('ban', [ServerRconController::class, 'ban'])->name('ban');
+        Route::get('sendCommand', [ServerRconController::class, 'sendCommand'])->name('sendCommand');
+        Route::get('setRanks', [ServerRconController::class, 'setRanks'])->name('setRanks');
+        
+        //post
+        Route::post('ban', [ServerRconController::class, 'banStore'])->name('ban.store');
+        Route::post('sendCommand', [ServerRconController::class, 'sendCommandStore'])->name('sendCommand.store');
+        Route::post('setRanks', [ServerRconController::class, 'setRanksStore'])->name('setRanks.store');
     });
 });
 
-Route::post('/logout', [LoginController::class, 'logout'])->name('auth.logout');
+Route::post('logout', [LoginController::class, 'logout'])->name('auth.logout');

@@ -39,7 +39,7 @@
 
         <!-- Nav Item - Video -->
         <li class="nav-item {{ Request::is('admin/video*') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('video.index') }}">
+            <a class="nav-link" href="{{ route('admin.video.index') }}">
                 <i class="fab fa-youtube"></i>
                 <span>Videos</span>
             </a>
@@ -47,7 +47,7 @@
 
         <!-- Nav Item - User -->
         <li class="nav-item {{ Request::is('admin/user*') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('user.index') }}">
+            <a class="nav-link" href="{{ route('admin.user.index') }}">
                 <i class="fas fa-user-edit"></i>
                 <span>Users</span>
             </a>
@@ -55,7 +55,7 @@
 
         <!-- Nav Item - User -->
         <li class="nav-item {{ Request::is('admin/event*') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('event.index') }}">
+            <a class="nav-link" href="{{ route('admin.event.index') }}">
                 <i class="fas fa-user-edit"></i>
                 <span>Events</span>
             </a>
@@ -71,9 +71,9 @@
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Players</h6>
-                    <a class="collapse-item" href="{{ route('ban.index') }}">Ban Players</a>
-                    <a class="collapse-item" href="{{ route('send.command.index') }}">Send Command</a>
-                    <a class="collapse-item" href="{{ route('set.ranks.index') }}">Set Ranks</a>
+                    <a class="collapse-item" href="{{ route('admin.server.ban') }}">Ban Players</a>
+                    <a class="collapse-item" href="{{ route('admin.server.sendCommand') }}">Send Command</a>
+                    <a class="collapse-item" href="{{ route('admin.server.setRanks') }}">Set Ranks</a>
                     <div class="collapse-divider"></div>
                     <h6 class="collapse-header">Other Pages:</h6>
                     <a class="collapse-item" href="404.html">404 Page</a>

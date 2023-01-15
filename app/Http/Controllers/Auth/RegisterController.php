@@ -48,6 +48,6 @@ class RegisterController extends Controller
 
         $user->accountCreatedNotification($user, $token);
 
-        return redirect()->route('login')->with('success', 'Email confrimation berhasil di kirim!');
+        return redirect()->route('auth.login')->with('success', 'Email confrimation berhasil di kirim!');
     }
 }

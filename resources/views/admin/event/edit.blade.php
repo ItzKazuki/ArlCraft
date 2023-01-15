@@ -5,7 +5,7 @@
     <h1 class="h2">Edit Event</h1>
 </div>
 <div class="col-lg-8">
-    <form method="post" action="{{ route('event.update', $event->id) }}">
+    <form method="post" action="{{ route('admin.event.update', $event->id) }}">
         @csrf
         @method('PATCH')
         <div class="mb-3">

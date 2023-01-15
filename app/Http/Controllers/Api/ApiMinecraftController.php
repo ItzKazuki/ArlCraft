@@ -40,18 +40,15 @@ class ApiMinecraftController extends Controller
         
         try {
 
-            $query->Connect($request->ip, $request->port);
+            $query->ConnectBedrock($request->ip, $request->port);
 
-            $data = [
+            return [
                 'status' => 200,
-                'info' => $query->GetInfo(),
-                'players' => $query->GetPlayers()
+                'data' => $query->GetInfo()
             ];
-
-            return $data;
         } catch( MinecraftQueryException $e )
         {
-            echo $e->getMessage( );
+            echo $e->getMessage();
         }
     }
 
@@ -62,6 +59,8 @@ class ApiMinecraftController extends Controller
      */
     public function java(Request $request)
     {
+        $query = new MinecraftQuery();
+
         if (!$request->ip || !$request->port) {
             $data = [
                 'status' => 400,
@@ -73,18 +72,15 @@ class ApiMinecraftController extends Controller
 
         try {
 
-            $query = new MinecraftPing($request->ip, $request->port);
+            $query->Connect($request->ip, $request->port);
 
-            return $query->Query();
-        } catch( MinecraftPingException $e )
-        {
+            return [
+                'status' => 200,
+                'data' => $query->GetInfo(),
+                'players' => $query->GetPlayers()
+            ];
+        } catch( MinecraftPingException $e ) {
             echo $e->getMessage( );
-        } finally
-        {
-            if($query)
-            {
-                $query->Close();
-            }
         }
     }
 

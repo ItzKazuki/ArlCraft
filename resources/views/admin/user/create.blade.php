@@ -5,7 +5,7 @@
     <h1 class="h2">Create New User</h1>
 </div>
 <div class="col-lg-8">
-    <form method="post" action="{{ route('user.store') }}">
+    <form method="post" action="{{ route('admin.user.store') }}">
         @csrf
         <div class="mb-3">
           <label for="name" class="form-label">Name</label>

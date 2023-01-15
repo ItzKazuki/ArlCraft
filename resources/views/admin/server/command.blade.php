@@ -5,7 +5,7 @@
 </div>
 
 <div class="col-lg-8">
-  <form method="post" action="{{ route('send.command.index') }}">
+  <form method="post" action="{{ route('admin.server.sendCommand.store') }}">
       @csrf
       <div class="mb-3">
         <label for="command" class="form-label">Command</label>
