@@ -27,7 +27,7 @@ class ServerRconController extends Controller
             // $response['response'] = $rcon->get_response();
             //dd($this->parseMinecraftColors($rcon->getResponse()));
 
-            return preg_replace('/[^A-Za-z0-9\ ]/', '', $rcon->getResponse());
+            return $this->parseMinecraftColors($rcon->getResponse());
         } else {
             // $response['status'] = 'error';
             // $response['error'] = 'RCON connection error';

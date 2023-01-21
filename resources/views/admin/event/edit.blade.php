@@ -55,13 +55,13 @@
         </div>
         <div class="mb-3">
             <label for="img" class="form-label">Event Img</label>
+            <i data-toggle="popover" data-trigger="hover" data-content="jenis file harus berupa jpng atau png, minimal 1mb" class="fas fa-info-circle"></i>
             <input type="hidden" name="oldImg" value="{{ $event->img }}">
             @if ($event->img)
                 <img src="{{ Storage::path($event->img) }}" class="img-preview img-fluid mb-3 col-sm-5 "> 
             @else
                 <img class="img-preview img-fluid mb-3 col-sm-5">
             @endif
-            <i data-toggle="popover" data-trigger="hover" data-content="jenis file harus berupa jpng atau png, minimal 1mb" class="fas fa-info-circle"></i>
             <input type="file" class="form-control @error('img') is-invalid @enderror" id="img" name="img" onchange="previewImage()">
             @error('img')
                 <div class="invalid-feedback">
