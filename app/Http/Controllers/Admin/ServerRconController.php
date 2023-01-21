@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 class ServerRconController extends Controller
 {
+    function parseMinecraftColors($string) {
+      $string = utf8_decode(htmlspecialchars($string, ENT_QUOTES, "UTF-8"));
+      $string = preg_replace('/\xA7([0-9a-f])/i', '<span class="mc-color mc-$1">', $string, -1, $count) . str_repeat("</span>", $count);
+      return utf8_encode(preg_replace('/\xA7([k-or])/i', '<span class="mc-$1">', $string, -1, $count) . str_repeat("</span>", $count));
+    }
+
     public function sendRcon($cmd)
     {
         // $response = array();
@@ -19,8 +25,9 @@ class ServerRconController extends Controller
             // $response['status'] = 'success';
             // $response['command'] = $cmd;
             // $response['response'] = $rcon->get_response();
+            //dd($this->parseMinecraftColors($rcon->getResponse()));
 
-            return true;
+            return preg_replace('/[^A-Za-z0-9\ ]/', '', $rcon->getResponse());
         } else {
             // $response['status'] = 'error';
             // $response['error'] = 'RCON connection error';
@@ -39,9 +46,15 @@ class ServerRconController extends Controller
 
     public function banStore(Request $request) 
     {
-        $cmd = 'ban' . ' ' . $request->player . ' ' . $request->durasi . ' ' . $request->message;
+        $cmd = 'ban' . ' ' . $request->player . ' ' . $request->message;
         if(BannedUser::where('username', $request->player)->first() != null) {
             return redirect()->back()->with('error', 'this username already banned');
+        }
+        
+        try {
+            $status = $this->sendRcon($cmd);
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
         }
 
         //set to database
@@ -52,13 +65,8 @@ class ServerRconController extends Controller
             'banned_by' => Auth::user()->username
         ]);
 
-        $status = $this->sendRcon($cmd);
 
-        if (!$status) {
-            return redirect()->back()->with('error', 'RCON connection error');
-        }
-
-        return redirect()->back()->with('success', 'Success send request');
+        return redirect()->back()->with('success', $status);
     }
 
     public function sendCommand()
@@ -70,8 +78,16 @@ class ServerRconController extends Controller
 
     public function sendCommandStore(Request $request)
     {
-        $cmd = '';
-        $this->sendRcon($cmd);
+        
+        try {
+            $status = $this->sendRcon($request->command);
+        } catch (\Exception $e) {
+            if(env('APP_ENV') == 'local') dd($e);
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+        dd($status);
+
+        return redirect()->back()->with('success', $status);
     }
 
     public function setRanks()

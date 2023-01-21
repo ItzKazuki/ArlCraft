@@ -19,7 +19,9 @@
         @foreach ($events as $event)
         <div class="col-md-4">
             <div class="card mb-3 bg-transparent border-0">
-                <img src="img/menu/{{ $event->img }}" alt="Gambar Event" class="card-img-top">
+                @if ($event->img)
+                <img src="{{ Storage::path($event->img) }}" alt="Gambar Event" class="card-img-top">
+                @endif
                 <div class="card-body text-white">
                     <h5 class="card-title">{{ $event->event_name }}</h5>
                     <p class="card-text">{{ $event->deskripsi }}</p>

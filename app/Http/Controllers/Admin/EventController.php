@@ -6,6 +6,7 @@ use App\Models\Event;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
 {
@@ -47,8 +48,13 @@ class EventController extends Controller
             'deskripsi' =>  'required|min:3|max:255',
             'link' =>  'required',
             'start_at' => 'required|date',
-            'end_at' => 'required|date'
+            'end_at' => 'required|date',
+            'image' =>'image|file|max:1024'
         ]);
+
+        if($request->file('img')) {
+            $validation['img'] = $request->file('img')->store('event-img');
+        }
 
         $validation['create_by'] = Auth::user()->name;
 
@@ -96,8 +102,16 @@ class EventController extends Controller
             'deskripsi' =>  'required|min:3|max:255',
             'link' =>  'required',
             'start_at' => 'required|date',
-            'end_at' => 'required|date'
+            'end_at' => 'required|date',
+            'image' =>'image|file|max:1024'
         ]);
+
+        if($request->file('img')) {
+            if($request->oldImg) {
+                Storage::delete($request->oldImg);
+            }
+            $validation['img'] = $request->file('img')->store('event-img');
+        }
 
         $validation['create_by'] = Auth::user()->name;
 
@@ -114,6 +128,10 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
+        if($event->img) {
+            Storage::delete($event->img);
+        }
+
         $event->destroy($event->id);
 
         return redirect()->route('admin.event.index')->with('success', 'Event berhasil di hapus!');
