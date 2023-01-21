@@ -5,7 +5,7 @@
     <h1 class="h2">Edit Event</h1>
 </div>
 <div class="col-lg-8">
-    <form method="post" action="{{ route('admin.event.update', $event->id) }}">
+    <form method="post" action="{{ route('admin.event.update', $event->id) }}" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
         <div class="mb-3">
@@ -37,7 +37,7 @@
         </div>
         <div class="mb-3">
             <label for="start_at" class="form-label">Start At</label>
-            <input type="date" class="form-control @error('start_at') is-invalid @enderror" id="start_at" name="start_at" min="{{ date('Y-m-d') }}" value="{{ old('start_at', $event->start_at) }}" required autofocus>
+            <input type="date" class="form-control @error('start_at') is-invalid @enderror" id="start_at" name="start_at" value="{{ old('start_at', $event->start_at) }}" required autofocus>
             @error('start_at')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -46,8 +46,24 @@
         </div>
         <div class="mb-3">
             <label for="end_at" class="form-label">End At</label>
-            <input type="date" class="form-control @error('end_at') is-invalid @enderror" id="end_at" name="end_at" min="{{ date('Y-m-d') }}" value="{{ old('end_at', $event->end_at) }}" required autofocus>
+            <input type="date" class="form-control @error('end_at') is-invalid @enderror" id="end_at" name="end_at" value="{{ old('end_at', $event->end_at) }}" required autofocus>
             @error('end_at')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="img" class="form-label">Event Img</label>
+            <input type="hidden" name="oldImg" value="{{ $event->img }}">
+            @if ($event->img)
+                <img src="{{ Storage::path($event->img) }}" class="img-preview img-fluid mb-3 col-sm-5 "> 
+            @else
+                <img class="img-preview img-fluid mb-3 col-sm-5">
+            @endif
+            <i data-toggle="popover" data-trigger="hover" data-content="jenis file harus berupa jpng atau png, minimal 1mb" class="fas fa-info-circle"></i>
+            <input type="file" class="form-control @error('img') is-invalid @enderror" id="img" name="img" onchange="previewImage()">
+            @error('img')
                 <div class="invalid-feedback">
                     {{ $message }}
                 </div>
