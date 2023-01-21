@@ -49,7 +49,7 @@ class EventController extends Controller
             'link' =>  'required',
             'start_at' => 'required|date',
             'end_at' => 'required|date',
-            'image' =>'image|file|max:1024'
+            'img' =>'image|file|max:1024'
         ]);
 
         if($request->file('img')) {
@@ -103,7 +103,7 @@ class EventController extends Controller
             'link' =>  'required',
             'start_at' => 'required|date',
             'end_at' => 'required|date',
-            'image' =>'image|file|max:1024'
+            'img' =>'image|file|max:1024'
         ]);
 
         if($request->file('img')) {

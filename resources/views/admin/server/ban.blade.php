@@ -26,15 +26,6 @@
             @enderror
         </div>
         <div class="mb-3">
-            <label for="durasi" class="form-label mr-1">Durasi</label><i data-toggle="popover" data-trigger="hover" data-content="durasi banned, gunakan 1d, 1m, 1y, kosongkan jika ingin selamanya" class="fas fa-info-circle"></i>
-            <input type="text" class="form-control @error('durasi') is-invalid @enderror" id="durasi" name="durasi" value="{{ old('durasi') }}" required autofocus>
-            @error('durasi')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
-        </div>
-        <div class="mb-3">
             <label for="message" class="form-label mr-1">Message</label><i data-toggle="popover" data-trigger="hover" data-content="gunakan message ini untuk alasan dari banned" class="fas fa-info-circle"></i>
             <input type="text" class="form-control @error('message') is-invalid @enderror" id="message" name="message" value="{{ old('message') }}" required autofocus>
             @error('message')
