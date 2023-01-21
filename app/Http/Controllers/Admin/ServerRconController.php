@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 class ServerRconController extends Controller
 {
+    function parseMinecraftColors($string) {
+      $string = utf8_decode(htmlspecialchars($string, ENT_QUOTES, "UTF-8"));
+      $string = preg_replace('/\xA7([0-9a-f])/i', '<span class="mc-color mc-$1">', $string, -1, $count) . str_repeat("</span>", $count);
+      return utf8_encode(preg_replace('/\xA7([k-or])/i', '<span class="mc-$1">', $string, -1, $count) . str_repeat("</span>", $count));
+    }
+
     public function sendRcon($cmd)
     {
         // $response = array();
@@ -19,8 +25,9 @@ class ServerRconController extends Controller
             // $response['status'] = 'success';
             // $response['command'] = $cmd;
             // $response['response'] = $rcon->get_response();
+            //dd($this->parseMinecraftColors($rcon->getResponse()));
 
-            return $rcon->getResponse();
+            return preg_replace('/[^A-Za-z0-9\ ]/', '', $rcon->getResponse());
         } else {
             // $response['status'] = 'error';
             // $response['error'] = 'RCON connection error';
@@ -47,7 +54,6 @@ class ServerRconController extends Controller
         try {
             $status = $this->sendRcon($cmd);
         } catch (\Exception $e) {
-            if(env('APP_ENV') == 'local') dd($e);
             return redirect()->back()->with('error', $e->getMessage());
         }
 
@@ -58,6 +64,7 @@ class ServerRconController extends Controller
             'message' => $request->message,
             'banned_by' => Auth::user()->username
         ]);
+
 
         return redirect()->back()->with('success', $status);
     }
@@ -78,6 +85,7 @@ class ServerRconController extends Controller
             if(env('APP_ENV') == 'local') dd($e);
             return redirect()->back()->with('error', $e->getMessage());
         }
+        dd($status);
 
         return redirect()->back()->with('success', $status);
     }
