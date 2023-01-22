@@ -18,16 +18,16 @@
     <div class="row">
         @foreach ($events as $event)
         <div class="col-md-4">
-            <div class="card mb-3 bg-transparent border-0">
+            <div class="card mb-3 border-0">
                 @if ($event->img)
-                <img src="{{ Storage::path($event->img) }}" alt="Gambar Event" class="card-img-top">
+                <img src="/storage/{{ $event->img }}" alt="Gambar Event" class="card-img-top">
                 @endif
-                <div class="card-body text-white">
+                <div class="card-body">
                     <h5 class="card-title">{{ $event->event_name }}</h5>
                     <p class="card-text">{{ $event->deskripsi }}</p>
                     <h5 class="card-title"><i class="bi bi-calendar-event"></i> Start: {{ $event->start_at }}</h5>
                     <h5 class="card-title"><i class="bi bi-calendar-event-fill"></i> End: {{ $event->end_at }}</h5>
-                    <a href="{{ $event->link }}" class="btn btn-primary">Learn More</a>
+                    <a href="{{ $event->link }}" class="btn btn-primary" >Learn More</a>
                 </div>
             </div>
         </div>
