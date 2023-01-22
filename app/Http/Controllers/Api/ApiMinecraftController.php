@@ -46,9 +46,10 @@ class ApiMinecraftController extends Controller
                 'status' => 200,
                 'data' => $query->GetInfo()
             ];
-        } catch( MinecraftQueryException $e )
-        {
-            echo $e->getMessage();
+        } catch( MinecraftQueryException $e ) {
+            return [
+                'error' => $e->getMessage( )
+            ];
         }
     }
 
@@ -80,7 +81,9 @@ class ApiMinecraftController extends Controller
                 'players' => $query->GetPlayers()
             ];
         } catch( MinecraftPingException $e ) {
-            echo $e->getMessage( );
+            return [
+                'error' => $e->getMessage( )
+            ];
         }
     }
 

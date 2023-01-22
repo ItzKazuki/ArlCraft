@@ -14,6 +14,7 @@
         {{-- @include('layouts.partials.admin.search') --}}
 
         {{-- @include('layouts.partials.admin.alert') --}}
+        <div class="box-info" data-toggle="popover" data-trigger="hover" data-content="Memeriksa status server"></div>
 
         @include('layouts.partials.admin.message')
 

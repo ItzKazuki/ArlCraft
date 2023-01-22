@@ -85,7 +85,6 @@ class ServerRconController extends Controller
             if(env('APP_ENV') == 'local') dd($e);
             return redirect()->back()->with('error', $e->getMessage());
         }
-        dd($status);
 
         return redirect()->back()->with('success', $status);
     }

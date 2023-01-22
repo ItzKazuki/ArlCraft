@@ -10147,3 +10147,9 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
     width: 100%;
 }
+.box-info {
+    width: 20px;
+    height: 20px;
+    background: blue;
+    margin: auto 1rem;
+}

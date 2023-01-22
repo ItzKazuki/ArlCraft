@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ApiMinecraftController;
+use App\Http\Controllers\Api\ServerStatusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,5 @@ Route::get('/voters', [ApiMinecraftController::class, 'voter']);
 
 Route::get('/server/rcon', [ApiMinecraftController::class, 'rcon']);
 Route::post('/server/rcon', [ApiMinecraftController::class, 'rconPost']);
+
+Route::get('/admin/kazuki/status/server/callback', [ServerStatusController::class, 'statusServer']);
