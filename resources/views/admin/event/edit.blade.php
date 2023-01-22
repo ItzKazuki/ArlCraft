@@ -58,7 +58,7 @@
             <i data-toggle="popover" data-trigger="hover" data-content="jenis file harus berupa jpng atau png, minimal 1mb" class="fas fa-info-circle"></i>
             <input type="hidden" name="oldImg" value="{{ $event->img }}">
             @if ($event->img)
-                <img src="{{ Storage::path($event->img) }}" class="img-preview img-fluid mb-3 col-sm-5 "> 
+                <img src="/storage/{{ $event->img }}" class="img-preview img-fluid mb-3 col-sm-5 "> 
             @else
                 <img class="img-preview img-fluid mb-3 col-sm-5">
             @endif

@@ -3,11 +3,11 @@
 <div class="container" style="text-align: center;">
     <div class=" text-center">
         <h1 class="text-white text-center px-3">ArlCraft Network</h1>
-        <a href="minecraft://?addExternalServer=§b§lArlCraft§cNetwork|mc.arlcraft.net:19132"><Button class="btn btn-primary">Main Sekarang!</Button></a>
+        <a href="minecraft://?addExternalServer=§b§lArlCraft§cNetwork|{{ env('MINECRAFT_IP') }}:{{ env('MINECRAFT_PORT') }}"><Button class="btn btn-primary">Main Sekarang!</Button></a>
         <br>
         <div class="playercount">
-            <p><span class="sip " data-ip="mc.arlcraft.net" data-jenis="bedrock">
-            </span> Players sedang online di <span class="ip"> mc.arlcraft.net </span></p>
+            <p><span class="sip " data-ip="{{ env('MINECRAFT_IP') }}" data-jenis="{{ env('MINECRAFT_TYPE') }}" data-port="{{ env('MINECRAFT_PORT') }}">
+            </span> Players sedang online di <span class="ip"> {{ env('MINECRAFT_IP') }} </span></p>
         </div>
     </div>
     <hr class="text-white">

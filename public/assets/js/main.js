@@ -25,9 +25,12 @@ $(document).on("click",".ip",()=>{
 $(document).ready(()=>{
   const ip = $(".sip").attr("data-ip");
   const jenis = $(".sip").attr("data-jenis");
+	const port = $(".sip").attr("data-port");
+	const restIP = "{{ env('APP_REST_API', 'http://api.kazukikunn.xyz') }}"
+
 
   setInterval(()=>{
-    $.get(`https://api.kazukikunn.xyz/api/mc?type=${jenis}&port=19132&ip=${ip}`, (result)=>{
+    $.get(`http://139.59.107.61:27016/api/mc?type=${jenis}&port=${port}&ip=${ip}`, (result)=>{
       if (result.players) {
         $(".sip").html(result.players.online);
       } else {
