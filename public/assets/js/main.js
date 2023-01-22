@@ -26,11 +26,9 @@ $(document).ready(()=>{
   const ip = $(".sip").attr("data-ip");
   const jenis = $(".sip").attr("data-jenis");
 	const port = $(".sip").attr("data-port");
-	const restIP = "{{ env('APP_REST_API', 'http://api.kazukikunn.xyz') }}"
-
 
   setInterval(()=>{
-    $.get(`http://139.59.107.61:27016/api/mc?type=${jenis}&port=${port}&ip=${ip}`, (result)=>{
+    $.get(`https://api.mcsrvstat.us/${jenis}/2/${ip}:${port}`, (result)=>{
       if (result.players) {
         $(".sip").html(result.players.online);
       } else {
