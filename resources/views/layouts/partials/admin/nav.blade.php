@@ -36,7 +36,7 @@
                     Profile
                 </a>
                 @if (Auth::user()->isAdmin)
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="{{ route('admin.settings.index') }}">
                         <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                         Settings
                     </a>
