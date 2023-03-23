@@ -21,10 +21,10 @@
     <link href="{{ asset('/assets/admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
     {{--  summernote --}}
-    <link rel="stylesheet" href="{{ asset('/plugins/summernote/summernote-bs4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/vendor/summernote/summernote-bs4.min.css') }}">
 
     {{-- select2 --}}
-    <link rel="stylesheet" href="{{ asset('/plugins/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/vendor/select2/css/select2.min.css') }}">
 
     <style>
         .youtube-container {
@@ -90,7 +90,8 @@
     @include('layouts.partials.modal.logout')
 
     <!-- Bootstrap core JavaScript-->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> --}}
+    <script src="{{ asset('/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script>
         $(function () {
@@ -98,7 +99,7 @@
         })
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.14.1/dist/sweetalert2.all.min.js"></script>
+    <script src="/vendor/sweetalert2/sweetalert2.all.min.js"></script>
     <script>
         @if (Session::has('error'))
             Swal.fire({
@@ -130,10 +131,10 @@
     <script src="{{ asset('/assets/admin/js/sb-admin-2.min.js') }}"></script>
 
     <!-- Summernote -->
-    <script src="{{ asset('/plugins/summernote/summernote-bs4.min.js') }}"></script>
+    <script src="{{ asset('/vendor/summernote/summernote-bs4.min.js') }}"></script>
 
     <!-- Select2 -->
-    <script src="{{ asset('/plugins/select2/js/select2.min.js') }}"></script>
+    <script src="{{ asset('/vendor/select2/js/select2.min.js') }}"></script>
 
 
 </body>

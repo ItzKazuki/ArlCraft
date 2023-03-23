@@ -27,8 +27,7 @@ class HomeController extends Controller
     public function vote()
     {
         //get data from this web
-        $key = 'RZjXda1XZhn9THCqvVTkTJJijdcxTVOpL8';
-        $url = 'https://minecraftpocket-servers.com/api/?object=servers&element=voters&key='. $key .'&month=current&format=json&limit=1000';
+        $url = 'https://minecraftpocket-servers.com/api/?object=servers&element=voters&key='. env('MC_POCKET_SERVER_KEY') .'&month=current&format=json&limit=1000';
         $data = $this->curl($url);
 
         $monthVoter = new Carbon('last day of last month'); //tanggal 1 di reverse ke bulan sebelumny.. ex hari ini bulan may sebelumby bakal return bulan april
