@@ -1,5 +1,7 @@
 <?php
 
+use App\Classes\Settings\System;
+use App\Http\Controllers\Admin\SettingsController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\HomeController;
@@ -91,6 +93,16 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
         Route::post('sendCommand', [ServerRconController::class, 'sendCommandStore'])->name('sendCommand.store');
         Route::post('setRanks', [ServerRconController::class, 'setRanksStore'])->name('setRanks.store');
     });
+
+    //settings
+    Route::get('settings/datatable', [SettingsController::class, 'datatable'])->name('settings.datatable');
+    Route::patch('settings/updatevalue', [SettingsController::class, 'updatevalue'])->name('settings.updatevalue');
+    Route::redirect('settings#system', 'system')->name('settings.system');
+
+    //settings
+    Route::patch('settings/update/system', [System::class, 'updateSettings'])->name('settings.update.systemsettings');
+    Route::patch('settings/update/misc', [System::class, 'updateSettings'])->name('settings.update.miscsettings');
+    Route::resource('settings', SettingsController::class)->only('index');
 });
 
-Route::post('logout', [LoginController::class, 'logout'])->name('auth.logout');
+Route::post('logout', [LoginController::class, 'logout'])->name('user.logout');

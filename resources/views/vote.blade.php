@@ -57,7 +57,7 @@
                     </table>
                     <p>Data dari {{ count($voters->voters) }} Players</p>
                     <small>sekarang tanggal {{ date("d/m/Y") }}, pukul {{ date("H:i") }} WIB</small> <br>
-                    <a href="https://minecraftpocket-servers.com/server/111813/vote"><button class="btn btn-primary mt-3">Vote Now!</button></a>
+                    <a href="{{ env('MC_VOTE_URL') }}"><button class="btn btn-primary mt-3">Vote Now!</button></a>
                 </div>
             </div>
         </div>

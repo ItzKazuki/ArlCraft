@@ -39,7 +39,7 @@
                                 <hr class="dropdown-divider">
                             </li>
                             <li class="nav-item">
-                                <form action="{{ route('auth.logout') }}" method="post">
+                                <form action="{{ route('user.logout') }}" method="post">
                                     @csrf
                                     <button type="submit" class="dropdown-item btn btn-outline-0 nav-link">
                                         <i class="bi bi-box-arrow-right"></i>

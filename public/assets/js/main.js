@@ -25,7 +25,7 @@ $(document).on("click",".ip",()=>{
 $(document).ready(()=>{
   const ip = $(".sip").attr("data-ip");
   const jenis = $(".sip").attr("data-jenis");
-	const port = $(".sip").attr("data-port");
+  const port = $(".sip").attr("data-port");
 
   setInterval(()=>{
     $.get(`https://api.mcsrvstat.us/${jenis}/2/${ip}:${port}`, (result)=>{

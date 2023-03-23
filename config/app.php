@@ -16,7 +16,19 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
-    'version' => env('APP_VER', '1.1.0'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Version
+    |--------------------------------------------------------------------------
+    |
+    | This value is the version of your application. This value is used when the
+    | framework needs to place the application's version in a notification or
+    | any other location as required by the application or its packages.
+    |
+    */
+
+    'version' => '1.2.2',
 
     /*
     |--------------------------------------------------------------------------
@@ -70,7 +82,7 @@ return [
     |
     */
 
-    'timezone' => 'Asia/Jakarta',
+    'timezone' => env('APP_TIMEZONE', 'Asia/Jakarta'),
 
     /*
     |--------------------------------------------------------------------------

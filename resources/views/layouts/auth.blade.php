@@ -31,7 +31,7 @@
 
         <!-- Custom scripts for all pages-->
         <script src="/assets/admin/js/sb-admin-2.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.14.1/dist/sweetalert2.all.min.js"></script>
+        <script src="/vendor/sweetalert2/sweetalert2.all.min.js"></script>
         <script>
             @if (Session::has('error'))
                 Swal.fire({
