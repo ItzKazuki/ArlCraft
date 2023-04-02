@@ -1,12 +1,14 @@
 @extends('layouts.index')
 @section('body')
     <!-- Modal -->
-    @if ($voters->month === $monthVoter)
+    @if ($showModal) 
+    {{-- kalo tanggal > 5 maka hasilin false --}}
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header float-right">
-                <h5>Congratulations Top Voter in {{ $thisMonth }}🎉🎊</h5>
+                <h5>Congratulations Top Voter in {{ $monthVoter->format('F') }}🎉🎊</h5>
             </div>
+            {{-- @dd($topVoter) --}}
             <div class="modal-body">
                 <div>
                     <table class="table table-bordered">
@@ -49,13 +51,13 @@
                                 @for ($i = 0; $i < 10; $i++)
                                     <tr>
                                         <th scope="row">{{ $i + 1 }}</th>
-                                        <td>{{ $voters->voters[$i]->nickname }}</td>
-                                        <td>{{ $voters->voters[$i]->votes }}</td>
+                                        <td>{{ $voters[$i]['nickname'] }}</td>
+                                        <td>{{ $voters[$i]['votes'] }}</td>
                                     </tr>
                                 @endfor
                             </tbody>
                     </table>
-                    <p>Data dari {{ count($voters->voters) }} Players</p>
+                    <p>Data dari {{ $countVoters }} Players</p>
                     <small>sekarang tanggal {{ date("d/m/Y") }}, pukul {{ date("H:i") }} WIB</small> <br>
                     <a href="{{ env('MC_VOTE_URL') }}"><button class="btn btn-primary mt-3">Vote Now!</button></a>
                 </div>
