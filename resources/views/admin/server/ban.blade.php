@@ -48,7 +48,6 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Username</th>
-                <th scope="col">Duration</th>
                 <th scope="col">Message</th>
                 <th scope="col">Banned At</th>
                 <th scope="col">Banned By</th>
@@ -59,7 +58,6 @@
             <tr>
                 <td>{{ $ban->id }}</td>
                 <td>{{ $ban->username }}</td>
-                <td>{{ $ban->duration }}</td>
                 <td>{{ $ban->message }}</td>
                 <td>{{ $ban->created_at }}</td>
                 <td>{{ $ban->banned_by }}</td>
