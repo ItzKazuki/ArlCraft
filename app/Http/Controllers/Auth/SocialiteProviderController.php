@@ -24,8 +24,9 @@ class SocialiteProviderController extends Controller
     public function handleGoogleCallback(Request $request)
     {
         try {
-            $user_google    = Socialite::driver('google')->user();
-            $user           = User::where('email', $user_google->getEmail())->first();
+            $user_google    = Socialite::driver('google')->stateless()->user();
+            $user           = User::where('email', $user_google->email)->first();
+            // dd($user);
 
             //jika user ada maka langsung di redirect ke halaman home
             //jika user tidak ada maka simpan ke database
@@ -36,16 +37,16 @@ class SocialiteProviderController extends Controller
                 return redirect()->route('dashboard.index');
             } else {
                 $create = User::Create([
-                    'email'             => $user_google->getEmail(),
-                    'username'          => $user_google->getNickname(),
-                    'name'              => $user_google->getName(),
+                    'email'             => $user_google->email,
+                    'username'          => 'user_' . $user_google->id,
+                    'name'              => $user_google->name,
                     'password'          => Hash::make(Str::random(30))
                 ]);
 
                 $token = $user->createToken();
 
                 DB::table('password_resets')->insert([
-                    'email' => $user_google->getEmail(), 
+                    'email' => $user_google->email, 
                     'token' => $token, 
                     'created_at' => Carbon::now()
                 ]);
@@ -57,7 +58,10 @@ class SocialiteProviderController extends Controller
             }
 
         } catch (\Exception $e) {
-            return redirect()->route('login')->with('error', $e->getMessage());
+            if(env('APP_ENV') == 'local') {
+                dd($e);
+            }
+            return redirect()->route('auth.login')->with('error', $e->getMessage());
         }
     }
 }

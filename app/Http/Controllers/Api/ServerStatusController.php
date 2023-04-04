@@ -17,6 +17,23 @@ class ServerStatusController extends Controller
         ];
     }
 
+    public function rconStatus()
+    {
+        // kalo rcon aktif
+        if (false) {
+            return [
+                'status' => true,
+                'server' => 'online'
+            ];
+        }
+
+        return [
+            'status' => false,
+            'server' => 'offline',
+            'message' => 'error ini misalnya'
+        ];
+    }
+
     public function serverStatus()
     {
         try {
