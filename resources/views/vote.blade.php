@@ -1,10 +1,10 @@
 @extends('layouts.index')
 @section('body')
     <!-- Modal -->
-    @if ($showModal) 
     {{-- kalo tanggal > 5 maka hasilin false --}}
     <div class="modal-dialog">
         <div class="modal-content">
+            @if ($showModal)
             <div class="modal-header float-right">
                 <h5>Congratulations Top Voter in {{ $monthVoter->format('F') }}🎉🎊</h5>
             </div>
@@ -20,24 +20,36 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @for ($i = 0; $i < 3; $i++)
+                            @foreach ($topVoter as $key => $voter )
+                                <tr>
+                                    <th scope="row">{{ $key + 1 }}</th>
+                                    <td>{{ $voter->nickname }}</td>
+                                    <td>{{ $voter->vote }}</td>
+                                </tr>
+                            @endforeach
+                            {{-- @for ($i = 0; $i < 3; $i++)
                                 <tr>
                                     <th scope="row">{{ $i + 1 }}</th>
                                     <td>{{ $topVoter[$i]->nickname }}</td>
                                     <td>{{ $topVoter[$i]->vote }}</td>
                                 </tr>
-                            @endfor
+                            @endfor --}}
                         </tbody>
                     </table>
                 </div>
             </div>
+            @endif
+            @if ($issetTopVoter && Auth::user()->isAdmin)
+                <div class="modal-header float-right bg-danger">
+                    <p>Please migrate top voter, use 'php artisan arlcraft:sync:topvoter'</p>
+                </div>
+            @endif
         </div>
     </div>
-    @endif
     <br>
     <div class="row">
         <div class="card bg-transparent text-white mb-2">
-            <div class="card-header text-white"><h4 class="card-title">Top Voters</h4></div>
+            <div class="card-header text-white"><h4 class="card-title">Top Ten Voters</h4></div>
                 <div class="card-body text-white">
                     <table class="table text-white">
                             <thead>

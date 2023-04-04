@@ -32,13 +32,19 @@ class HomeController extends Controller
 
         $monthVoter = new Carbon('last day of last month'); //tanggal 1 di reverse ke bulan sebelumny.. ex hari ini bulan may sebelumby bakal return bulan april
         $carbonNow = Carbon::now(); //mendeklarasikan carbon now
+        $topVoter = Voter::where('month', '=', intval($monthVoter->format('m')))->get(); //mencari top voter berdasarkan month
 
         $modal = true;
+        $issetTopVoter = true;
+        // cek apakah lebih dari tanggal 5
         if ($carbonNow->format('d') > '05') {
             $modal = false;
         }
+        // cek, apakah datanya ada
+        if (isset($topVoter[0])) {
+            $issetTopVoter = false;
+        }
 
-        $topVoter = Voter::where('month', '=', intval($monthVoter->format('m')))->get(); //mencari top voter berdasarkan month
 
         return view('vote', [
             'title' => 'Votes',
@@ -46,7 +52,8 @@ class HomeController extends Controller
             'voters' => $getVoters['voters'],
             'countVoters' => count($getVoters['voters']),
             'monthVoter' => $monthVoter,
-            'topVoter' => $topVoter
+            'topVoter' => $topVoter,
+            'issetTopVoter' => $issetTopVoter
         ]);
     }
 
